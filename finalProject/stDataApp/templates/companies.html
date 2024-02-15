@@ -1,0 +1,35 @@
+<!-- companies.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Data</title>
+</head>
+<body>
+    <h1>Company Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>National ID</th>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>Sector Standard</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.company_id }}</td>
+                <td>{{ company.company_national_id }}</td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.company_country.name }}</td>
+                <td>{{ company.company_sector_standard.sector_standard }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
