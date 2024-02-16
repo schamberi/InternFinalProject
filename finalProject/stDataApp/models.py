@@ -21,23 +21,24 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
-class RawData(models.Model):
-    raw_data = models.JSONField(null=True)
+
+
+class ExcelFile(models.Model):
+    file = models.FileField(upload_to='excel_files/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"RawData - ID: {self.pk}"
-
+        return self.file.name
 class Company(models.Model):
     company_id = models.CharField(max_length=100)
     company_national_id = models.CharField(max_length=100)
     company_name = models.CharField(max_length=255)
     company_country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, null=True)
     company_sector_standard = models.ForeignKey(SectorStandards, on_delete=models.DO_NOTHING,null=True)
-    raw_data = models.ForeignKey(RawData, on_delete=models.CASCADE)
+    raw_data = models.ForeignKey(ExcelFile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.company_name
-    
     
     
     

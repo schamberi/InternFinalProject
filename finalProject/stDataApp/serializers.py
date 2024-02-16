@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import SectorStandards, Country, RawData, Company
+from .models import SectorStandards, Country, Company
 
 class SectorStandardsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,10 +11,7 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = '__all__'
 
-class RawDataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RawData
-        fields = '__all__'
+
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
