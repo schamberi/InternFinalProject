@@ -21,8 +21,10 @@ def fill_sector_standards_from_excel():
 
         # Iterate over filtered rows and append objects to the list
         for index, row in filtered_rows.iterrows():
+            # Stripping leading zeros from the code column
+            code = str(row['code']).lstrip('0')
             sector_standard_obj = SectorStandards(
-                code=row['code'],
+                code=code,
                 sector_standard=row['sector_standard'],
                 sector_label=row['sector_label']
             )
