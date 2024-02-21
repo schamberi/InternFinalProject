@@ -1,0 +1,55 @@
+<!-- company_data.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Data</title>
+</head>
+<body>
+    <h1>Company Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>Company National ID</th>
+                <th>Company Name</th>
+                <th>Company Country</th>
+                <th>Company Sector Standard</th>
+                <th>Raw Data ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.company_id }}</td>
+                <td>{{ company.company_national_id }}</td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.company_country }}</td>
+                <td>{{ company.company_sector_standard.code }}</td>
+                <td>{{ company.raw_data.id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if companies.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ companies.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ companies.number }} of {{ companies.paginator.num_pages }}.
+            </span>
+
+            {% if companies.has_next %}
+                <a href="?page={{ companies.next_page_number }}">next</a>
+                <a href="?page={{ companies.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
